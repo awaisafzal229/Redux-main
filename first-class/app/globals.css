@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+input{
+    border: 2px solid;
+}
+.add-user{
+    height: 100px;
+    padding: 10px;
+    border: 2px solid orange
+}
