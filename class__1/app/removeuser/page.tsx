@@ -1,40 +1,32 @@
 "use client"
 
-// import { Provider, useSelector } from 'react-redux';
-// import { store } from '../redux/store';
-
-// function Page() {
-//     const userData = useSelector((data:any)=>data.users)
-//     console.log(userData);
-    
-//     return (
-//         <Provider store={store}>
-//             <div>
-//                 <h1>Remove User Page</h1>
-//             </div>
-//         </Provider>
-    
-//   );
-// }
-// export default Page
-
-// removeuser/page.tsx
-
-import { Provider, useSelector } from 'react-redux'; // Remove redundant Provider import
-import { store } from '../redux/store';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { removeUser } from '../redux/slice';
 
 function Page() {
-    
-    
-    const userData = useSelector((state: any) => state.users);
+    const userData = useSelector((state: any) => state.users)
+    const dispatch = useDispatch();
+    console.log(userData);
+
     return (
-        <Provider store={store}>
-        <div> {/* Remove redundant Provider wrapping */}
+
+        <div className="display-user">
             <h1>Remove User Page</h1>
+            {
+                userData.map((data: any) => {
+                    return (
+                        <>
+                            <div className="users"><span>{data.name}</span>
+                                <button onClick={() => dispatch(removeUser(data.id))}>Delete</button>
+                            </div>
+                        </>
+                    )
+                })
+            }
         </div>
-        </Provider>
+
+
     );
 }
+export default Page
 
-export default Page;
